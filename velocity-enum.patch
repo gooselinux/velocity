@@ -1,0 +1,150 @@
+diff -Naur velocity-1.4-orig/docs/api/index-all.html velocity-1.4/docs/api/index-all.html
+--- velocity-1.4-orig/docs/api/index-all.html	2009-04-24 20:09:34.000000000 +0200
++++ velocity-1.4/docs/api/index-all.html	2009-04-24 20:12:12.000000000 +0200
+@@ -1476,7 +1476,7 @@
+ <DD>Maps entries to the parent JAR File
+  Key = the entry *excluding* plain directories
+  Value = the JAR URL
+-<DT><A HREF="org/apache/velocity/util/EnumerationIterator.html#enum"><B>enum</B></A> - 
++<DT><A HREF="org/apache/velocity/util/EnumerationIterator.html#enumer"><B>enumer</B></A> - 
+ Variable in class org.apache.velocity.util.<A HREF="org/apache/velocity/util/EnumerationIterator.html">EnumerationIterator</A>
+ <DD>The enumeration to iterate.
+ <DT><A HREF="org/apache/velocity/runtime/resource/ResourceCacheImpl.html#enumerateKeys()"><B>enumerateKeys()</B></A> - 
+diff -Naur velocity-1.4-orig/docs/api/org/apache/velocity/util/EnumerationIterator.html velocity-1.4/docs/api/org/apache/velocity/util/EnumerationIterator.html
+--- velocity-1.4-orig/docs/api/org/apache/velocity/util/EnumerationIterator.html	2009-04-24 20:09:31.000000000 +0200
++++ velocity-1.4/docs/api/org/apache/velocity/util/EnumerationIterator.html	2009-04-24 20:11:56.000000000 +0200
+@@ -94,7 +94,7 @@
+ <TR BGCOLOR="white" CLASS="TableRowColor">
+ <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+ <CODE>private &nbsp;java.util.Enumeration</CODE></FONT></TD>
+-<TD><CODE><B><A HREF="../../../../org/apache/velocity/util/EnumerationIterator.html#enum">enum</A></B></CODE>
++<TD><CODE><B><A HREF="../../../../org/apache/velocity/util/EnumerationIterator.html#enumer">enumer</A></B></CODE>
+ 
+ <BR>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The enumeration to iterate.</TD>
+@@ -110,7 +110,7 @@
+ <B>Constructor Summary</B></FONT></TD>
+ </TR>
+ <TR BGCOLOR="white" CLASS="TableRowColor">
+-<TD><CODE><B><A HREF="../../../../org/apache/velocity/util/EnumerationIterator.html#EnumerationIterator(java.util.Enumeration)">EnumerationIterator</A></B>(java.util.Enumeration&nbsp;enum)</CODE>
++<TD><CODE><B><A HREF="../../../../org/apache/velocity/util/EnumerationIterator.html#EnumerationIterator(java.util.Enumeration)">EnumerationIterator</A></B>(java.util.Enumeration&nbsp;enumer)</CODE>
+ 
+ <BR>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new iteratorwrapper instance for the specified 
+@@ -173,10 +173,10 @@
+ </TR>
+ </TABLE>
+ 
+-<A NAME="enum"><!-- --></A><H3>
+-enum</H3>
++<A NAME="enumer"><!-- --></A><H3>
++enumer</H3>
+ <PRE>
+-private java.util.Enumeration <B>enum</B></PRE>
++private java.util.Enumeration <B>enumer</B></PRE>
+ <DL>
+ <DD>The enumeration to iterate.</DL>
+ 
+@@ -193,11 +193,11 @@
+ <A NAME="EnumerationIterator(java.util.Enumeration)"><!-- --></A><H3>
+ EnumerationIterator</H3>
+ <PRE>
+-public <B>EnumerationIterator</B>(java.util.Enumeration&nbsp;enum)</PRE>
++public <B>EnumerationIterator</B>(java.util.Enumeration&nbsp;enumer)</PRE>
+ <DL>
+ <DD>Creates a new iteratorwrapper instance for the specified 
+  Enumeration.<DD><DL>
+-<DT><B>Parameters:</B><DD><CODE>enum</CODE> - The Enumeration to wrap.</DL>
++<DT><B>Parameters:</B><DD><CODE>enumer</CODE> - The Enumeration to wrap.</DL>
+ </DD>
+ </DL>
+ 
+diff -Naur velocity-1.4-orig/src/java/org/apache/velocity/runtime/parser/Parser.java velocity-1.4/src/java/org/apache/velocity/runtime/parser/Parser.java
+--- velocity-1.4-orig/src/java/org/apache/velocity/runtime/parser/Parser.java	2009-04-24 20:09:31.000000000 +0200
++++ velocity-1.4/src/java/org/apache/velocity/runtime/parser/Parser.java	2009-04-24 20:12:51.000000000 +0200
+@@ -3214,8 +3214,8 @@
+         jj_expentry[i] = jj_lasttokens[i];
+       }
+       boolean exists = false;
+-      for (java.util.Enumeration enum = jj_expentries.elements(); enum.hasMoreElements();) {
+-        int[] oldentry = (int[])(enum.nextElement());
++      for (java.util.Enumeration enumer = jj_expentries.elements(); enumer.hasMoreElements();) {
++        int[] oldentry = (int[])(enumer.nextElement());
+         if (oldentry.length == jj_expentry.length) {
+           exists = true;
+           for (int i = 0; i < jj_expentry.length; i++) {
+diff -Naur velocity-1.4-orig/src/java/org/apache/velocity/texen/Generator.java velocity-1.4/src/java/org/apache/velocity/texen/Generator.java
+--- velocity-1.4-orig/src/java/org/apache/velocity/texen/Generator.java	2009-04-24 20:09:31.000000000 +0200
++++ velocity-1.4/src/java/org/apache/velocity/texen/Generator.java	2009-04-24 20:12:36.000000000 +0200
+@@ -451,10 +451,10 @@
+      */
+     protected void fillContextHash (Context context, Hashtable objs)
+     {
+-        Enumeration enum = objs.keys();
+-        while (enum.hasMoreElements())
++        Enumeration enumer = objs.keys();
++        while (enumer.hasMoreElements())
+         {
+-            String key = enum.nextElement().toString();
++            String key = enumer.nextElement().toString();
+             context.put (key, objs.get(key));
+         }
+     }
+@@ -479,11 +479,11 @@
+      */
+     protected void fillContextProperties (Context context)
+     {
+-        Enumeration enum = props.propertyNames();
++        Enumeration enumer = props.propertyNames();
+         
+-        while (enum.hasMoreElements())
++        while (enumer.hasMoreElements())
+         {
+-            String nm = (String)enum.nextElement();
++            String nm = (String)enumer.nextElement();
+             if (nm.startsWith ("context.objects."))
+             {
+                 
+diff -Naur velocity-1.4-orig/src/java/org/apache/velocity/util/EnumerationIterator.java velocity-1.4/src/java/org/apache/velocity/util/EnumerationIterator.java
+--- velocity-1.4-orig/src/java/org/apache/velocity/util/EnumerationIterator.java	2009-04-24 20:09:31.000000000 +0200
++++ velocity-1.4/src/java/org/apache/velocity/util/EnumerationIterator.java	2009-04-24 20:12:26.000000000 +0200
+@@ -30,17 +30,17 @@
+     /**
+      * The enumeration to iterate.
+      */
+-    private Enumeration enum = null;
++    private Enumeration enumer = null;
+ 
+     /**
+      * Creates a new iteratorwrapper instance for the specified 
+      * Enumeration.
+      *
+-     * @param enum  The Enumeration to wrap.
++     * @param enumer  The Enumeration to wrap.
+      */
+-    public EnumerationIterator( Enumeration enum)
++    public EnumerationIterator( Enumeration enumer)
+     {
+-        this.enum = enum;
++        this.enumer = enumer;
+     }
+ 
+     /**
+@@ -50,7 +50,7 @@
+      */
+     public Object next()
+     {
+-        return enum.nextElement();
++        return enumer.nextElement();
+     }
+     
+     /**
+@@ -60,7 +60,7 @@
+      */
+     public boolean hasNext()
+     {
+-        return enum.hasMoreElements();
++        return enumer.hasMoreElements();
+     }
+ 
+     /**

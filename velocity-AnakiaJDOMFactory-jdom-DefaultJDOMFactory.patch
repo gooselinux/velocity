@@ -1,0 +1,11 @@
+--- src/java/org/apache/velocity/anakia/AnakiaJDOMFactory.java.sav	Thu Sep 23 12:46:10 2004
++++ src/java/org/apache/velocity/anakia/AnakiaJDOMFactory.java	Thu Sep 23 12:46:29 2004
+@@ -18,7 +18,7 @@
+ 
+ import org.jdom.Element;
+ import org.jdom.Namespace;
+-import org.jdom.input.DefaultJDOMFactory;
++import org.jdom.DefaultJDOMFactory;
+ 
+ /**
+  * A customized JDOMFactory for Anakia that produces {@link AnakiaElement}

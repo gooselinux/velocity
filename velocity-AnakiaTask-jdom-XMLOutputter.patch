@@ -1,0 +1,21 @@
+--- src/java/org/apache/velocity/anakia/AnakiaTask.java.sav	Wed Apr 14 14:26:40 2004
++++ src/java/org/apache/velocity/anakia/AnakiaTask.java	Thu Sep 23 13:01:14 2004
+@@ -34,6 +34,7 @@
+ import org.jdom.Document;
+ import org.jdom.JDOMException;
+ import org.jdom.input.SAXBuilder;
++import org.jdom.output.Format;
+ 
+ import org.apache.velocity.Template;
+ import org.apache.velocity.app.VelocityEngine;
+@@ -343,7 +344,9 @@
+                 }
+ 
+                 OutputWrapper ow = new OutputWrapper();
+-                ow.setEncoding (encoding);
++                Format owf = ow.getFormat();
++                owf.setEncoding (encoding);
++                ow.setFormat (owf);
+                 
+                 context.put ("root", root.getRootElement());
+                 context.put ("xmlout", ow );

@@ -1,0 +1,46 @@
+--- velocity-1.4/src/java/org/apache/velocity/test/VelocityServletTest.java~	2004-04-14 13:26:41.000000000 +0100
++++ velocity-1.4/src/java/org/apache/velocity/test/VelocityServletTest.java	2005-06-06 11:54:53.000000000 +0100
+@@ -22,6 +22,7 @@
+ import java.net.URL;
+ import java.util.Enumeration;
+ import java.util.Properties;
++import java.util.Set;
+ import javax.servlet.RequestDispatcher;
+ import javax.servlet.Servlet;
+ import javax.servlet.ServletConfig;
+@@ -237,6 +238,16 @@
+         public void setAttribute(String name, Object value)
+         {
+         }
++
++        public Set getResourcePaths(String path)
++        {
++            return null;
++        }
++
++        public String getServletContextName()
++        {
++            return null;
++        }
+     }
+ 
+     static class MockHttpServletResponse implements HttpServletResponse
+@@ -391,5 +402,18 @@
+         public void setStatus(int i , String s)
+         {
+         }
++
++	public void setCharacterEncoding(String charset)
++	{
++	}
++
++        public String getContentType()
++        {
++            return null;
++        }
++
++        public void resetBuffer()
++        {
++        }
+     }
+ }
